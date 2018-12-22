@@ -1,0 +1,33 @@
+<div class="container" id="container">
+    <div class="panel panel-primary , col-lg-5">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Nouveau Customer</div>
+        <div class="panel-body">
+          <form [formGroup]="newproduitform" (ngSubmit)="onSubmitform()">
+            <div class="form-group"></div>
+            <label for="id">Idcustomer</label>
+            <input type="number" class="form-control" id="id" formControlName="id">
+            <div class="alert alert-success" role="alert" *ngIf="newproduitform.controls['id'].invalid && 
+            (newproduitform.controls['id'].touched)">Id customer Obligatoire !!</div>
+          <!-- for active -->            
+            <div class="form-group"></div>
+            <label for="active">Active</label>
+            <select id="active" class="form-control" formControlName="active">
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+             <!-- for age -->            
+             <div class="form-group"></div>
+             <label for="age">Age</label>
+             <input type="number" class="form-control" id="age" formControlName="age">
+             <!-- for Name -->            
+            <div class="form-group"></div>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+            <button type="submit " class="btn btn-primary">Enregistrer</button>
+          </form>
+          
+        </div>
+    
+      </div>
+</div>

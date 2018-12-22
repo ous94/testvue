@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="auth/signin">Acceuil</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="auth/signup"  class="navbar-brand">liste Customers <span class="sr-only">(current)</span></a></li>
+      </ul>
+
+          <!-- Connection et deconnection -->
+
+      <ul class="nav navbar-nav navbar-right">
+          <li routerLinkActive="active"><a routerLink="auth/signin"  class="navbar-brand">Se Connecter</a></li>
+          <li routerLinkActive="active"><a routerLink="auth/signup"  class="navbar-brand">Déconnecton</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="glyphicon glyphicon-euro
+      "> LISTE DES CUSTOMERS</span></div>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th>idcustomer</th>
+    <th>Name</th>
+    <th>age</th>
+    <th>active</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let costumer of listcustomers " class="table-info">
+      <td class="table-primary"><span class="glyphicon glyphicon-user
+        ">{{costumer.id}}</span></td>
+      <td>{{costumer.name}}</td>
+      <td>{{costumer.age}}</td>
+      <td>{{costumer.active}}</td>
+      <td><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></td>
+      <td><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button></td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
