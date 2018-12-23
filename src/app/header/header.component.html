@@ -9,11 +9,11 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="auth/signup"  class="navbar-brand">liste Customers <span class="sr-only">(current)</span></a></li>
+        <li routerLinkActive="active"><a routerLink="edite"  class="navbar-brand">liste Customers <span class="sr-only">(current)</span></a></li>
+        <li routerLinkActive="active"><a routerLink="file"  class="navbar-brand">Ajout File <span class="sr-only">(current)</span></a></li>
+
       </ul>
-
           <!-- Connection et deconnection -->
-
       <ul class="nav navbar-nav navbar-right">
           <li routerLinkActive="active"><a routerLink="auth/signin"  class="navbar-brand">Se Connecter</a></li>
           <li routerLinkActive="active"><a routerLink="auth/signup"  class="navbar-brand">Déconnecton</a></li>
@@ -21,8 +21,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
 <div class="panel panel-primary">
     <div class="panel-heading"><span class="glyphicon glyphicon-euro
       "> LISTE DES CUSTOMERS</span></div>
@@ -34,17 +32,43 @@
     <th>active</th>
     <th>Action</th>
   </thead>
-  <tbody>
+  <tbody >
+    
     <tr *ngFor="let costumer of listcustomers " class="table-info">
       <td class="table-primary"><span class="glyphicon glyphicon-user
         ">{{costumer.id}}</span></td>
       <td>{{costumer.name}}</td>
       <td>{{costumer.age}}</td>
       <td>{{costumer.active}}</td>
-      <td><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></td>
-      <td><button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button></td>
-
+      <td><button type="submit" class="btn btn-danger" (click)='deleteCustomer(costumer)' ><span class="glyphicon glyphicon-trash"></span></button></td>
+      <td><button type="submit" class="btn btn-primary" (click)='editecustomer(costumer)'><span class="glyphicon glyphicon-pencil"></span></button></td>
     </tr>
   </tbody>
 </table>
+<button type="submit" class="btn btn-success" (click)='newUser()'>new Customer</button>
 </div>
+
+<h3>Find By Age</h3>
+<div style="width: 300px;">
+  <form (ngSubmit)="rechercher()">
+    <div class="form-group">
+      <label for="lastname">Age</label>
+      <input type="text" class="form-control" id="age" required [(ngModel)]="age" name="age">
+    </div>
+ 
+    <div class="btn-group">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
+<ul>
+  <li *ngFor="let customer of rechercherAge">
+    <h4>{{customer.id}}</h4>
+    <h4>{{customer.name}}</h4>
+    <h4>{{customer.active}}</h4>
+    <h4>{{customer.age}}</h4>
+    <button type="submit" class="btn btn-danger"  (click)='deleteCustomerid(costumer)' ><span class="glyphicon glyphicon-trash"></span></button>
+    <button type="submit" class="btn btn-primary" (click)='editecustomer(costumer)'><span class="glyphicon glyphicon-pencil"></span></button>
+  </li>
+</ul>
+

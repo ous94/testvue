@@ -1,0 +1,21 @@
+
+<!--  -->
+
+    <form [formGroup]="form">
+    <div class="col-12">
+    <div> <label for="" class="form-label"> Favorite Food</label></div>
+    <div class="form-check form-check-inline" *ngFor="let control of fruitsArray.controls; let i = index;">
+      <input class="form-check-input" [formControl]="control " type="checkbox" id="inlinecheck{{1}}" 
+      (change)="getselectedFriuitvalue() ">
+      <label class="form-check-label" for="nlinecheck{{1}}">{{fruits[i]}}</label>
+    </div>
+    <small id="fnhelp" *ngIf="favfruitErreur && checkControleTouched()" class="form-text custom-invalid-feedback">Choose un</small>
+
+  </div>
+  <button type="submit" class="btn btn-primary">valide</button>
+
+
+</form>
+
+
+

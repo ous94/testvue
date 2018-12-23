@@ -4,6 +4,8 @@ import { Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Customer } from 'src/app/header/customer';
 import {FormGroup,FormBuilder,Validators, FormControl   } from '@angular/forms'
+import{Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-signout',
@@ -12,7 +14,10 @@ import {FormGroup,FormBuilder,Validators, FormControl   } from '@angular/forms'
 })
 export class SignoutComponent implements OnInit {
   //private customer;
-  nouveau : Customer = new Customer();
+  customer: Customer = new Customer();
+
+  customers: Observable<Customer[]>;
+
 
   newproduitform= new FormGroup({
     id: new FormControl(''),
@@ -22,35 +27,49 @@ export class SignoutComponent implements OnInit {
 
 
   });
+  nouveau : Customer = new Customer() ;
 
-  constructor( private ServiceCustomerService:ServiceCustomerService,private FormBuilder:FormBuilder ) {}
+
+  constructor( private ServiceCustomerService:ServiceCustomerService,private FormBuilder:FormBuilder,private Route:Router ) {}
 
   ngOnInit() {
    // this.initform();
-  
   }
 
   initform()
   {
-    this.newproduitform = this.FormBuilder.group({
-      id:['',Validators.required],
+    /* this.newproduitform = this.FormBuilder.group({
+      id:'',
       active:'',
       age:'',
       name:''
 
-    }); 
+    });  */
+    this.onSubmitform();
   }
 
   onSubmitform()
   {
     console.log(this.newproduitform.value);
-     const customerValue =this.newproduitform.value;
-     this.ServiceCustomerService.addHero(customerValue).subscribe(data => {
+     this.ServiceCustomerService.addHero(this.newproduitform.value).
+     subscribe(data => console.log(data), error => console.log(error));
+    this.customer = new Customer();
+    this.Route.navigate(['']);
+
+  }
+
+  reloadData() {
+    this.customers = this.ServiceCustomerService.getCustomer();
+  }
+     
+     //const customerValue =this.newproduitform.value;
+     //this.nouveau = this.newproduitform.value;
+     /* this.ServiceCustomerService.addHero(this.nouveau).subscribe(data => {
     
       console.log(data);
     } , err=>{
     console.log(err);
-    });
+    }); */
 
 
     /*this.customer()
@@ -60,6 +79,7 @@ export class SignoutComponent implements OnInit {
     customerValue['name'],
     );
  */
+   //this.ServiceCustomerService.onSaveCustomer(this.newproduitform.value);
 
     /* const newcustomer = new Customer (
       customerValue [id],
@@ -69,5 +89,5 @@ export class SignoutComponent implements OnInit {
       );
       this.ServiceCustomerService.getCustomer(newcustomer); */
 
-  }
+  
 }
